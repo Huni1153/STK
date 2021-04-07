@@ -1,0 +1,608 @@
+// StudyDocumentInfo 테이블 생성.
+create table StudyDocumentInfo (
+documentCode varchar2(10) constraint doc_code_pk primary key,
+documentName varchar2(20) constraint doc_name_nn not null,
+documentDate date constraint doc_date_nn not null,
+documentPath varchar2(50) constraint doc_path_nn not null,
+documentForm varchar2(10) constraint doc_form_nn not null
+);
+// StudyContentsinfo 테이블 생성.
+create table StudyContentsInfo (
+documentCode varchar2(10) constraint doc_code_fk references StudyDocumentInfo(documentCode),
+codeSection varchar2(4000),
+noteSection varchar2(4000),
+constraint doc_con_pk primary key(documentCode)
+);
+
+
+// studyDocumentInfo테이블과 studyContentInfo테이블의 모든 데이터를 읽어온다.
+select * 
+from StudyDocumentInfo d
+Join StudyContentsInfo c
+on d.documentCode=c.documentCode;
+
+// studyDocumentInfo테이블의 2015/05/15 일의 데이터를 읽어온다.
+select * from studyDocumentInfo where documentDate=to_date('2015/05/15','YYYY/MM/DD'); 
+
+// studyDocumentInfo테이블의 2015/05/12~2015/05/15 일까지의 데이터를 읽어온다.
+select * from studyDocumentInfo where documentDate between to_date('2015/05/12','YYYY/MM/DD') AND to_date('2015/05/16','YYYY/MM/DD'); 
+
+// studyDocumentInfo테이블의 155121001코드의 documentForm을 '.java'에서 '.txt'로 수정한다.
+update studyDocumentInfo set documentForm='.txt' where documentCode='155121001';
+
+// studyDocumentInfo테이블의 155121001코드의 행의 데이터을 삭제한다.
+delete from studyDocumentInfo where documentCode='155101002';
+
+// studyContentsInfo테이블의 15591003코드에 해당하는 데이터를 읽어온다.
+select * from studyContentsInfo where documentCode='15591003';
+
+// studyContentsInfo테이블의 155141002코드의 codeSection의 '설 : //#1 STK 프로젝트 입니다. //#2 메인 //#3 출력합니다. 에서 'STK 클래스 입니다.'로 수정한다.
+update studyContentInfo set codeSection='STK 클래스 입니다.';
+
+// studyContentsInfo테이블의 155141002코드의 행의 데이터를 삭제한다.
+delete from studyContentsInfo where documentCode='155141002';
+
+
+
+
+// 데이터를 StudyDocumentInfo 테이블에 추가한다.
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('15581001','Thread1',TO_DATE('2015/05/08', 'YYYY/MM/DD'),'15/5/8','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('15591001','GUI1',TO_DATE('2015/05/09', 'YYYY/MM/DD'),'15/5/9','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('15591002','GUI2',TO_DATE('2015/05/09', 'YYYY/MM/DD'),'15/5/9','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('15591003','GUI3',TO_DATE('2015/05/09', 'YYYY/MM/DD'),'15/5/0','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155101001','DailyTest1',TO_DATE('2015/05/10', 'YYYY/MM/DD'),'15/5/10','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155101002','DailyTest2',TO_DATE('2015/05/10', 'YYYY/MM/DD'),'15/5/10','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155111001','RunableTest1',TO_DATE('2015/05/11', 'YYYY/MM/DD'),'15/5/11','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155121001','RunableTest2',TO_DATE('2015/05/12', 'YYYY/MM/DD'),'15/5/12','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm)
+values('155141002','STK_project',TO_DATE('2015/05/14', 'YYYY/MM/DD'),'15/5/14','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm)
+values('155141003','BookInfo',TO_DATE('2015/05/14', 'YYYY/MM/DD'),'15/5/14','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155151001','JoinTest',TO_DATE('2015/05/15', 'YYYY/MM/DD'),'15/5/15','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155151003','BookInfo',TO_DATE('2015/05/15', 'YYYY/MM/DD'),'15/5/15','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155151004','GoodsInfo',TO_DATE('2015/05/15', 'YYYY/MM/DD'),'15/5/15','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155151005','STKprojectOne',TO_DATE('2015/05/15', 'YYYY/MM/DD'),'15/5/15','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155151007','STKprojectThree',TO_DATE('2015/05/15', 'YYYY/MM/DD'),'15/5/15','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155161001','Account',TO_DATE('2015/05/16', 'YYYY/MM/DD'),'15/5/16','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155161002','Calculator',TO_DATE('2015/05/16', 'YYYY/MM/DD'),'15/5/16','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155161003','SharedArea',TO_DATE('2015/05/16', 'YYYY/MM/DD'),'15/5/16','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155171001','ClientInfo',TO_DATE('2015/05/17', 'YYYY/MM/DD'),'15/5/17','.java');
+
+insert into StudyDocumentInfo(documentCode,documentName,documentDate,documentPath,documentForm) values('155181001','Numbers',TO_DATE('2015/05/18', 'YYYY/MM/DD'),'15/5/18','.java');
+
+
+// 데이터를 StudyContestInfo테이블에 추가한다.
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('15581001','public class Thread1(){}','Thread 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('15591001','public class GUI1(){}','GUI1 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('15591002','public class GUI2(){}','GUI2 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('15591003','public class GUI3(){}','GUI3클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155101001','public class DailyTest1(){}','DailyTest1 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155101002','public class DailyTest2(){}','DailyTest2 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155111001','public class RunableTest1(){}','RunableTest1 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155121001','
+public class RunableTest2 {
+public RunableTest2()
+{
+System.out.println( "RunableTest2 클래스 입니다." );
+}
+public static void main(String[] args){
+new RunableTest2();
+}','RunableTest2클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155141002','class  STK_project   #1
+{
+        public static void main( String[] args )   #2
+
+        {
+                System.out.println("Hello World!");   #3
+
+        }
+}',' 설명 : //#1  STK 프로젝트 입니다.
+//#2  메인
+//#3  출력합니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155141003','import java.io.*;
+
+public class  BookInfo extends GoodsInfo implements Serializable
+{
+         private String writer;
+        private int page;
+
+        public BookInfo()
+        {
+                super(null, null, 0);
+        }
+        public BookInfo(String code, String name, int price, String writer, int page)
+        {
+                super(code, name, price);
+                this.writer = writer;
+                this.page = page;
+        }
+        public void setWriter(String writer)
+        {
+                this.writer = writer;
+        }
+        public void setPage(int page)
+        {
+                this.page = page;
+        }
+        public String getWriter()
+        {
+                return this.writer;
+        }
+        public int getPage()
+        {
+                return this.page;
+        }
+
+        public String toString()
+        {
+                String str = super.toString() + writer + " / p" + page;
+                return str;
+        }
+
+        private void writeObject(ObjectOutputStream out) throws IOException
+        {
+
+                out.defaultWriteObject();
+        }
+        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException
+        {
+
+                in.defaultReadObject();
+        }
+}','GoodInfo 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155151001','public class JoinTest(){}','JoinTest 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155151003','import java.io.*;
+
+public class  BookInfo extends GoodsInfo implements Serializable
+{
+         private String writer;
+        private int page;
+
+        public BookInfo()
+        {
+                super(null, null, 0);
+        }
+        public BookInfo(String code, String name, int price, String writer, int page)
+        {
+                super(code, name, price);
+                this.writer = writer;
+                this.page = page;
+        }
+        public void setWriter(String writer)
+        {
+                this.writer = writer;
+        }
+        public void setPage(int page)
+        {
+                this.page = page;
+        }
+        public String getWriter()
+        {
+                return this.writer;
+        }
+        public int getPage()
+        {
+                return this.page;
+        }
+
+        public String toString()
+        {
+                String str = super.toString() + writer + " / p" + page;
+                return str;
+        }
+
+        private void writeObject(ObjectOutputStream out) throws IOException
+        {
+
+                out.defaultWriteObject();
+        }
+        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException
+        {
+
+                in.defaultReadObject();
+        }
+}','BookInfo 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155151004','import java.io.*;
+
+public class GoodsInfo implements Serializable
+{
+        private String code;
+        transient private String name;
+        private int price;
+
+        public GoodsInfo()
+        {
+                this.code = "";
+                this.name = "";
+                this.price = 0;
+        }
+        public GoodsInfo(String code, String name , int price)
+        {
+                this.code = code;
+                this.name = name;
+                this.price = price;
+        }
+
+        public String getCode()
+        {
+                return this.code;
+        }
+        public String getName()
+        {
+                return this.name;
+        }
+        public int getPrice()
+        {
+                return this.price;
+        }
+
+        public void setCode()
+        {
+                this.code = code;
+        }
+        public void setName()
+        {
+                this.name = name;
+        }
+        public void setPrice()
+        {
+                this.price = price;
+        }
+
+        public String toString()
+        {
+                String str = code + " / " + name + " / " + price + "원 / " ;
+                return str;
+        }
+}','GoodsInfo 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155151005','class  STKprojectOne   #1
+
+{
+        public static void main( String[] args )    #2
+
+        {
+                System.out.println("Hello World!");    #3
+        }
+}','STKprojectOne 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155151007',' 코드 : public class  STKprojectThree
+{
+        public static void main(String[] args)
+        {
+                System.out.println("Hello World!");
+        }
+}','STKprojectThree 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155161001',' 코드 : public class  Account
+{
+        private String accountNo;
+        private String ownerName;
+        private int balance;
+
+        public Account()
+        {
+                this.accountNo = "";
+                this.ownerName = "";
+                this.balance = 0;
+        }
+        public Account(String accountNo, String ownerName, int balance)
+        {
+                this.accountNo = accountNo;
+                this.ownerName = ownerName;
+                this.balance = balance;
+        }
+
+        public void setAccountNo(String accountNo)
+        {
+                this.accountNo = accountNo;
+        }
+        public void setOwnerName(String ownerName)
+        {
+                this.ownerName = ownerName;
+        }
+        public void setBalance(int balance)
+        {
+                this.balance = balance;
+        }
+        public String getAccountNo()
+        {
+                return this.accountNo;
+        }
+        public String getOwnerName()
+        {
+                return this.ownerName;
+        }
+        public int getBalance()
+        {
+                return this.balance;
+        }
+
+        public int deposit(int balance)
+        {
+                System.out.println(" ## 입금합니다~~ ");
+                this.balance += balance;
+                return this.balance;
+        }
+        public int withdraw(int amount) throws Exception
+        {
+                if(this.balance < amount)
+                {
+                        throw new Exception(" 잔액이 부족합니다. ");
+                }
+                System.out.println(" ## 출금합니다~~ ");
+                this.balance -= amount;
+                return amount;
+        }
+
+        public String toString()        // toString() 오버라이드
+        {
+                String str = "계좌 : " + accountNo +
+                                        "\n예금주 이름 : " + ownerName +
+                                        "\n잔액 : " + balance + "\n";
+                return str;
+        }
+
+}','Account 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155161002','
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class Calculator extends JFrame implements ActionListener, KeyListener{
+
+        final int MAX_INPUT_LENGTH = 20; //최대한 입력 가능한 길이를 제한하고
+
+        //각 모드별로 index를 부여
+        final int INPUT_MODE = 0;
+        final int RESULT_MODE = 1;
+        final int ERROR_MODE = 2;
+        int displayMode;
+
+        boolean clearOnNextDigit;  //화면에 표시될 숫자를 지울지 말지 결정하는 녀석
+
+        double lastNumber;   //마지막에 기억될 수
+        String lastOperator;  // 마지막에 누른 연산자를 기억.
+
+        private JLabel output;    //숫자가 표시될 공간
+        private JButton buttons[];   //각 버튼을 배열로 생성할 것임.
+        private JPanel masterPanel, btnPanel, ctrPanel; //버튼과 레이블을 배치할 공간
+
+        //GUI를 생성해보자.
+        public Calculator(){
+
+                super("STK_계산기");
+
+                setBackground(Color.gray);   //프레임의 배경은 회색
+
+                masterPanel = new JPanel();
+
+                output = new JLabel("0", JLabel.RIGHT); // 레이블의 초기 값은 0
+                output.setBackground(Color.WHITE);
+                output.setOpaque(true);
+
+                buttons = new JButton[23];
+
+                btnPanel = new JPanel();
+
+                //숫자 버튼 만듦0에서9까지.
+                for (int i=0 ; i<=9 ; i++){
+                        buttons[i] = new JButton(String.valueOf(i));
+                }
+
+                //연산 버튼 만듦.
+                buttons[10] = new JButton("±");
+                buttons[11] = new JButton(".");
+                buttons[12] = new JButton("=");
+                buttons[13] = new JButton("/");
+                buttons[14] = new JButton("*");
+                buttons[15] = new JButton("-");
+                buttons[16] = new JButton("+");
+                buttons[17] = new JButton("√");
+                buttons[18] = new JButton("1/x");
+                buttons[19] = new JButton("%");
+
+                //컨트롤 버튼 만듦.
+                buttons[20] = new JButton("←");
+                buttons[21] = new JButton("CE");
+                buttons[22] = new JButton("C");
+
+                //각 버튼의 색을 다르게
+                for(int i=0 ; i<buttons.length ; i++){
+                        if(i<10){
+                                buttons[i].setForeground(Color.black); //숫자 버튼들
+                        }else if(i>=10 && i<21){
+                                buttons[i].setForeground(Color.blue); //연산자 버튼들
+                        }else{
+                                buttons[i].setForeground(Color.red); //컨트롤 버튼들.
+                        }
+                }
+
+                //패널에 숫자버튼 및 연산자 버튼 배치
+                btnPanel.setLayout(new GridLayout(4,5,2,2));
+
+                for(int i=7; i<=9 ; i++){
+                        btnPanel.add(buttons[i]);
+                }
+
+                btnPanel.add(buttons[13]); // /
+                btnPanel.add(buttons[17]); // √
+
+                for(int i=4; i<=6 ; i++){
+                        btnPanel.add(buttons[i]);
+                }
+
+                btnPanel.add(buttons[14]); // *
+                btnPanel.add(buttons[18]); // 1/x
+
+                for(int i=1; i<=3 ; i++){
+                        btnPanel.add(buttons[i]);
+                }
+}','Calculate 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155161003','public class SharedArea
+{
+        Account account1;
+        Account account2;
+
+        synchronized void transfer(int amount)
+        {
+                try
+                {
+                        account1.withdraw(100000);
+                        System.out.println(" 몽룡계좌 : 10만원 인출, ");
+                        account2.deposit(100000);
+                        System.out.println(" 춘향계좌 : 10만원 입금");
+                }
+                catch (Exception e)
+                {
+                        e.printStackTrace();
+                }
+        }
+        synchronized int getTotal()
+        {
+                return account1.getBalance() + account2.getBalance();
+        }
+}','SharedArea 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155171001','public class ClientInfo 
+{
+	private String name;
+	private String id;
+	private String password;
+	private String phoneNo;
+	private String address;
+	public ClientInfo()
+	{
+		this.name="";
+		this.id="";
+		this.password="";
+		this.phoneNo="";
+		this.address="";
+	}
+	public ClientInfo(String name,String id,String password)
+	{
+		this.name=name;
+		this.id=id;
+		this.password=password;
+	}
+	public ClientInfo(String name,String id,String password,String phoneNo,String address)
+	{
+		this(name,id,password);
+		this.phoneNo=phoneNo;
+		this.address=address;
+	}
+	public void changePassword(String Password)
+	{
+		this.password=password;
+	}
+	public String getName()
+	{
+		return this.name;
+	}
+	public String getId()
+	{
+		return this.id;
+	}
+	public String getPassword()
+	{
+		return this.password;
+	}
+	public String getPhoneNo()
+	{
+		return this.phoneNo;
+	}
+	public String getAddress()
+	{
+		return this.address;
+	}
+	public void setName(String name)
+	{
+		this.name=name;
+	}
+	public void setId(String id)
+	{
+		this.id=id;
+	}
+	public void setPassword(String password)
+	{
+		this.password=password;
+	}
+	public void setPhoneNo(String phoneNo)
+	{
+		this.phoneNo=phoneNo;
+	}
+	public void setAddress(String address)
+	{
+		this.address=address;
+	}
+}
+','ClientInfo 클래스 입니다.');
+
+insert into StudyContentsInfo(documentCode,codeSection,noteSection) values('155181001','public class Numbers
+{
+	private int[] num;
+	private int total;
+	private int average;
+
+	public Numbers()
+	{
+		this.num=null;
+	}
+	public Numbers(int[] num)
+	{
+		this.num=num;
+	}
+	public int getTotal()
+	{
+		for(int cnt=0;cnt<this.num.length;cnt++)
+		{
+			this.total+=num[cnt];
+		}
+		return this.total;
+	}
+	public int getAverage()
+	{
+		return this.average=this.total/this.num.length;
+	}
+	public int[] getNum()
+	{
+		return this.num;
+	}
+	public void setNum(int[] num)
+	{
+		this.num=num;
+	}
+}
+','Numbers 클래스 입니다.');

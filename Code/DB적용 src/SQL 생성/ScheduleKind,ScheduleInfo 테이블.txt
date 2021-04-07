@@ -1,0 +1,356 @@
+//20개
+//ScheduleKind
+
+create table ScheduleKind(
+schedulekindcode varchar2(10) primary key,
+schedulekindname varchar2(30) not null
+);
+
+insert into schedulekind
+values('1','이론');
+
+insert into schedulekind
+values('2','실습');
+
+insert into schedulekind
+values('3','휴식');
+
+insert into schedulekind
+values('4','운동');
+
+insert into schedulekind
+values('5','정보 수집 단계');
+
+insert into schedulekind
+values('6','유즈케이스 분석단계');
+
+insert into schedulekind
+values('7','클래스 분석단계');
+
+
+insert into schedulekind
+values('8','클래스 설계단계');
+
+
+insert into schedulekind
+values('9','클래스 상세 설계단계');
+
+
+insert into schedulekind
+values('10','소스코딩 및 디버깅단계');
+
+
+insert into schedulekind
+values('11','문서작업 및 발표준비단계');
+
+
+insert into schedulekind
+values('12','최종 완료 단계');
+
+
+insert into schedulekind
+values('13','휴가');
+
+
+insert into schedulekind
+values('14','생일');
+
+
+insert into schedulekind
+values('15','결혼 기념일');
+
+create table ScheduleInfo (
+scheduleCode varchar2(10) constraint sch_code_pk primary key,
+scheduleKindCode varchar2(10) constraint sch_kind_fk references ScheduleKind(schedulekindCode),
+scheduleName varchar2(40) constraint sch_name_nn not null,
+startDate date constraint sch_start_nn not null,
+endDate date constraint sch_end_nn not null,
+place varchar2(20),
+alarm date,
+image varchar2(100),
+note varchar2(100)
+);
+
+
+1.
+insert into scheduleinfo
+values('155152001',
+'3',
+'공원 산책',
+to_date('2015/5/15/12/20','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/15/2/0','yyyy/mm/dd/hh24/mi'),
+'율동 공원',
+null,
+null,
+null);
+
+2.
+insert into scheduleinfo
+values('155152002',
+'1',
+'네트워크 공부',
+to_date('2015/5/15/16/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/15/18/0','yyyy/mm/dd/hh24/mi'),
+'렉토피아',
+to_date('2015/1/1/2/0','yyyy/mm/dd/hh/mi'),
+null,
+null);
+
+3.
+insert into scheduleinfo
+values('155152003',
+'5',
+'벤치마킹',
+to_date('2015/5/15/19/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/15/23/0','yyyy/mm/dd/hh24/mi'),
+'렉토피아',
+null,
+null,
+null);
+
+
+4.
+insert into scheduleinfo
+values('155162004',
+'1',
+'스레드',
+to_date('2015/5/16/9/0','yyyy/mm/dd/hh/mi'),
+to_date('2015/5/16/12/0','yyyy/mm/dd/hh/mi'),
+'렉토피아',
+null,
+null,
+null);
+
+
+5.
+insert into scheduleinfo
+values('155162005',
+'3',
+'책읽기',
+to_date('2015/5/16/14/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/16/16/0','yyyy/mm/dd/hh24/mi'),
+'우리집',
+null,
+null,
+null);
+
+
+6.
+insert into scheduleinfo
+values('155172006',
+'4',
+'헬스',
+to_date('2015/5/17/14/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/17/16/0','yyyy/mm/dd/hh24/mi'),
+'스포애니',
+null,
+null,
+null);
+
+
+7.
+insert into scheduleinfo
+values('155172007',
+'6',
+'명사배치',
+to_date('2015/5/17/17/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/17/20/0','yyyy/mm/dd/hh24/mi'),
+'렉토피아',
+null,
+null,
+null);
+
+8.
+insert into scheduleinfo
+values('155172008',
+'6',
+'명사배치',
+to_date('2015/5/17/21/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/17/22/0','yyyy/mm/dd/hh24/mi'),
+'렉토피아',
+null,
+null,
+null);
+
+
+9.
+insert into scheduleinfo
+values('155182009',
+'7',
+'영문화 작업',
+to_date('2015/5/18/13/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/18/15/0','yyyy/mm/dd/hh24/mi'),
+'렉토피아',
+null,
+null,
+null);
+
+
+10.
+insert into scheduleinfo
+values('155182010',
+'12',
+'중간플젝 리펙토링',
+to_date('2015/5/18/17/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/18/22/0','yyyy/mm/dd/hh24/mi'),
+'렉토피아',
+null,
+null,
+null);
+
+
+11.
+insert into scheduleinfo
+values('155192011',
+'13',
+'부산 여행',
+to_date('2015/5/19/20/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/19/22/0','yyyy/mm/dd/hh24/mi'),
+'부산',
+to_date('2015/5/19/7/0','yyyy/mm/dd/hh/mi'),
+null,
+null);
+
+12.
+insert into scheduleinfo
+values('155192012',
+'13',
+'대구 여행',
+to_date('2015/5/19/15/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/19/22/0','yyyy/mm/dd/hh24/mi'),
+'대구',
+null,
+null,
+null);
+
+13.
+insert into scheduleinfo
+values('155202013',
+'13',
+'유나 생일',
+to_date('2015/5/20/12/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/20/18/0','yyyy/mm/dd/hh24/mi'),
+'사당역',
+null,
+null,
+null);
+
+14.
+insert into scheduleinfo
+values('155212014',
+'15',
+'대섭씨 결혼식',
+to_date('2015/5/21/12/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/21/17/0','yyyy/mm/dd/hh24/mi'),
+'집마당',
+null,
+null,
+'축의금 드림^-^');
+
+
+
+15.
+insert into scheduleinfo
+values('155222015',
+'13',
+'보라카이~!',
+to_date('2015/5/22/8/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/22/18/0','yyyy/mm/dd/hh24/mi'),
+'필리핀',
+null,
+null,
+'또 가구싶당!!!');
+
+16.
+insert into scheduleinfo
+values('155232016',
+'14',
+'교수님 생일',
+to_date('2015/5/23/8/0','yyyy/mm/dd/hh/mi'),
+to_date('2015/5/23/10/0','yyyy/mm/dd/hh/mi'),
+'노원역',
+null,
+null,
+'6월입니다');
+
+17.
+insert into scheduleinfo
+values('155242017',
+'8',
+'DAO클래스 설계',
+to_date('2015/5/24/15/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/24/18/0','yyyy/mm/dd/hh24/mi'),
+'렉토',
+null,
+null,
+null);
+
+18.
+insert into scheduleinfo
+values('155242018',
+'12',
+'회식',
+to_date('2015/5/24/21/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/24/23/0','yyyy/mm/dd/hh24/mi'),
+'렉토',
+null,
+null,
+null);
+
+19.
+insert into scheduleinfo
+values('155252019',
+'1',
+'SQL복습',
+to_date('2015/5/25/12/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/25/17/0','yyyy/mm/dd/hh24/mi'),
+'카페',
+null,
+null,
+null);
+
+
+20.
+insert into scheduleinfo
+values('155252020',
+'2',
+'SQL 코딩',
+to_date('2015/5/25/19/0','yyyy/mm/dd/hh24/mi'),
+to_date('2015/5/25/20/0','yyyy/mm/dd/hh24/mi'),
+'카페',
+null,
+null,
+null);
+
+select * from scheduleinfo order by schedulecode;
+
+//검색
+//schedule kind code로 검색
+select * 
+from scheduleinfo 
+where schedulekindcode=3;
+
+//schedule의 코드,이름,종류이름
+select schedulecode, schedulename, schedulekindname
+from scheduleinfo i
+join schedulekind k
+on i.schedulekindcode = k.schedulekindcode;
+
+//수정
+update scheduleinfo
+set schedulename='율동 공원 산책'
+where schedulecode = 155152001;
+
+//삭제
+delete from scheduleinfo
+where schedulecode = 155152001;
+
+//검색(날짜별)
+select *
+from scheduleinfo
+where startdate between '2015/5/15' and '2015/5/17'
+order by schedulecode;
+
+select *
+from scheduleinfo
+where startdate = to_date('2015/5/15/12/20','yyyy/mm/dd/hh24/mi');

@@ -1,0 +1,95 @@
+########## 테이블 생성
+
+create table ScheduleKind (
+scheduleKindCode varchar2(10) constraint kind_code_pk primary key,
+scheduleKindName varchar2(40) constraint kink_name_nn not null
+);
+
+create table ScheduleInfo (
+scheduleCode varchar2(10) constraint sch_code_pk primary key,
+scheduleKindCode varchar2(10) constraint sch_kind_fk references ScheduleKind(scheduleKindCode),
+scheduleName varchar2(40) constraint sch_name_nn not null,
+startDate date constraint sch_start_nn not null,
+endDate date constraint sch_end_nn not null,
+place varchar2(20), 
+alarm date,
+image varchar2(100),
+note varchar2(100)
+);
+
+create table StudyDocumentInfo (
+documentCode varchar2(10) constraint doc_code_pk primary key,
+documentName varchar2(20) constraint doc_name_nn not null,
+documentDate date constraint doc_date_nn not null,
+documentPath varchar2(50) constraint doc_path_nn not null,
+documentForm varchar2(10) constraint doc_form_nn not null
+);
+
+create table StudyContentsInfo (
+documentCode varchar2(10) constraint doc_code_fk references StudyDocumentInfo(documentCode),
+codeSection varchar2(4000),
+noteSection varchar2(4000),
+constraint doc_con_pk primary key(documentCode)
+);
+
+-----------------------------------------------------------
+###### ScheduleKind 테이블에 값 insert
+
+insert into schedulekind
+values('1','이론');
+
+insert into schedulekind
+values('2','실습');
+
+insert into schedulekind
+values('3','휴식');
+
+insert into schedulekind
+values('4','운동');
+
+insert into schedulekind
+values('5','정보 수집 단계');
+
+insert into schedulekind
+values('6','유즈케이스 분석단계');
+
+insert into schedulekind
+values('7','클래스 분석단계');
+
+insert into schedulekind
+values('8','클래스 설계단계');
+
+insert into schedulekind
+values('9','클래스 상세 설계단계');
+
+insert into schedulekind
+values('10','소스코딩 및 디버깅 단계');
+
+insert into schedulekind
+values('11','문서작업 및 발표준비단계');
+
+insert into schedulekind
+values('12','최종 완료 단계');
+
+insert into schedulekind
+values('13','휴가');
+
+insert into schedulekind
+values('14','생일');
+
+insert into schedulekind
+values('15','결혼 기념일');
+
+----------------------------------------------------------
+###### ScheduleInfo 테이블에 값 insert
+
+insert into scheduleinfo
+values('155155001',
+'3',
+'공원 산책',
+to_date('3915/5/15/12/20','yyyy/mm/dd/hh24/mi'),
+to_date('3915/5/15/2/0','yyyy/mm/dd/hh24/mi'),
+'율동 공원',
+sysdate,
+'image',
+'신난다~~!');

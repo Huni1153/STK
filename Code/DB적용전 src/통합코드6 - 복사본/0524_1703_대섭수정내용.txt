@@ -1,0 +1,17 @@
+1.
+StudyDocumentListController CLASS 전체 추가
+
+2.
+DailySchedule CLASS 에서
+	119 ~ 143 Line
+
+3. 
+StudyDocumentDAO CLASS 에서
+	createDocumentCode() 112 ~ 172 Line 
+	addFromFileDocumentDAO() 551 ~ 564 Line
+	documentDAOFileSave() 581 ~ 594 Line
+	
+
+4.
+WeeklySchedule  CLASS 에서
+	154 ~ 197 Line
